@@ -10,8 +10,20 @@ import { useGlobalContext } from '../../context';
 
 const useStyles = makeStyles((theme) => {
     return {
+        root: {
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            margin: theme.spacing(3, 0),
+            '& > *': {
+                margin: theme.spacing(0.5),
+            },
+        },
         chip: {
             color: "grey",
+        },
+        Completchip: {
+            color: "white",
         },
         avatar: {
             // BackgroundColor: "red",
@@ -20,45 +32,49 @@ const useStyles = makeStyles((theme) => {
     }
 })
 
-export const Genres = ({ label }) => {
+export const Genres = () => {
 
-    // const { setGener } = useGlobalContext();
+    const { geners, selectedGeners, addGeners, handleDelete } = useGlobalContext();
 
-    // const [chipColor, setChipColor] = useState("grey");
-    const classes = useStyles("grey");
-
-    const handleClick = (e) => {
-
-        if (e.target.tagName === "SPAN") {
-            console.log(e.target.textContent);
-            // setGener(e.target.textContent);
-        } else if (e.target.tagName === "DIV") {
-            console.log(e.target.nextElementSibling.textContent);
-            // setGener(e.target.nextElementSibling.textContent);
-        }
-
-
-    };
-
-    // const handleDelete = (e) => {
-    //     // console.info('You clicked the delete icon.');
-
-    // };
+    const classes = useStyles();
 
 
     return (
-        <Chip
-            onClick={(e) => handleClick(e)}
-            className={classes.chip}
-            avatar={<Avatar>M</Avatar >}
-            label={label}
-            clickable
-        // color="primary"
-        // onDelete={handleDelete}
-        // deleteIcon={<DoneIcon />}
-        >
-            Genres
-        </Chip>
+
+        <div className={classes.root}>
+            {
+                selectedGeners && selectedGeners.map(g => <Chip
+                    key={g.id}
+                    // onClick={(e) => addGeners(e)}
+                    className={classes.Completchip}
+                    avatar={<Avatar>{g.name[0]}</Avatar >}
+                    label={g.name}
+                    clickable
+                    color="primary"
+                    onDelete={() => handleDelete(g.id)}
+                // deleteIcon={<DoneIcon />}
+                >
+                </Chip >)
+            }
+
+            {
+                geners && geners.map(g => <Chip
+                    key={g.id}
+                    onClick={() => addGeners(g.id)}
+                    className={classes.chip}
+                    avatar={<Avatar>{g.name[0]}</Avatar >}
+                    label={g.name}
+                    clickable
+                // color="primary"
+                //onDelete={handleDelete}
+                //deleteIcon={<DoneIcon />}
+                >
+                </Chip >)
+            }
+
+
+        </div>
+
     );
 
 

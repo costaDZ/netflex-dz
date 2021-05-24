@@ -15,30 +15,18 @@ import useStyles from './style';
 
 
 
-export const CardItem = ({ id, title, overview, poster_path, release_date, media_type, vote_average }) => {
-
+export const CardItem = ({
+    id,
+    title,
+    name,
+    first_air_date,
+    poster_path,
+    release_date,
+    media_type,
+    vote_average,
+    kind,
+}) => {
     const classes = useStyles();
-
-    // const [loadingImg, setLoadingImg] = useState(true);
-
-    // const loadingTest = () => {
-    //     console.log("looooooooooooder")
-    // }
-
-    // console.log(loadingImg);
-
-    // const Loader = () => {
-    //     return (
-    //         <h1>Loading ...</h1>
-    //     )
-    // }
-
-    // useEffect(() => {
-    //     const timeOut = setTimeout(() => {
-    //         setLoadingImg(false)
-    //     }, 3000);
-    // }, [])
-
 
     return (
         <Grid item xs={12} sm={6} md={4} lg={3} >
@@ -54,17 +42,17 @@ export const CardItem = ({ id, title, overview, poster_path, release_date, media
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="h6" className={classes.title}>
-                            {title || '----'}
+                            {title || name}
                         </Typography>
                         {/* <Typography variant="body2" color="textSecondary" component="h6">
                             {overview}
                         </Typography> */}
                         <Box display="flex" justifyContent="space-between">
                             <Typography variant="body2" component="h6" className={classes.info}>
-                                {media_type}
+                                {kind}
                             </Typography>
                             <Typography variant="body2" component="h6" className={classes.info}>
-                                {release_date || '//'}
+                                {release_date || first_air_date}
                             </Typography>
                         </Box>
                     </CardContent>

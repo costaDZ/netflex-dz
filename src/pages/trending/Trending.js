@@ -7,16 +7,13 @@ import useStyles from './style';
 
 import { Loading } from '../../components';
 
-
 export const Trending = () => {
-
 
     const { trending } = useGlobalContext();
     const classes = useStyles();
 
 
     return (
-
         <>
             <Typography variant="h3" color="primary" className={classes.title}>
                 Trending
@@ -32,5 +29,3 @@ export const Trending = () => {
     );
 
 };
-
-// xs = { 12} md = { 6} lg = { 4} xl = { 3}

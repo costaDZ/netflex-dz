@@ -7,7 +7,7 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import SearchIcon from '@material-ui/icons/Search';
 import MovieIcon from '@material-ui/icons/Movie';
 import TvIcon from '@material-ui/icons/Tv';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useGlobalContext } from '../../context';
 
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 export const Navigation = () => {
-    const { fetchTrending, fetchMovies, setNumberPages } = useGlobalContext();
+    const { fetchTrending, fetchMovies, fetchSeries, fetchSearch } = useGlobalContext();
 
     const classes = useStyles();
     const [value, setValue] = useState('trending');
@@ -31,16 +31,22 @@ export const Navigation = () => {
 
     useEffect(() => {
         if (value === 'trending') {
+            console.log("=========navigation");
             history.push('/');
             fetchTrending();
-            setNumberPages(10);
         }
         if (value === 'movies') {
             history.push('/movies');
             fetchMovies();
         }
-        if (value === 'series') history.push('/series');
-        if (value === 'search') history.push('/search');
+        if (value === 'series') {
+            history.push('/series');
+            fetchSeries();
+        }
+        if (value === 'search') {
+            history.push('/search')
+            fetchSearch();
+        };
         checkPage();
         // eslint-disable-next-line
     }, [value, history]);
