@@ -77,7 +77,7 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchSearch();
         // eslint-disable-next-line
-    }, [state.searchPage]);
+    }, [state.searchPage, type]);
 
     useEffect(() => {
         fetchGeners();
