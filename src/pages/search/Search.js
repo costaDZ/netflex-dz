@@ -97,6 +97,7 @@ export const Search = () => {
                     />
                     <ButtonGroup variant="text" color="default" aria-label="search" className={classes.groupBtn}>
                         <Button
+                            type='submit'
                             // onClick={fetchSearch}
                             type='submit'
                             variant="contained"
