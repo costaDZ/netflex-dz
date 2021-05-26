@@ -2,15 +2,15 @@ import { makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => {
-    console.log(theme);
     return {
         appbar: {
-            background: 'white',
+            backgroundColor: 'white',
         },
         toolbar: {
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundColor: 'white',
         },
     }
 })

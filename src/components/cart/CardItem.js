@@ -12,6 +12,9 @@ import StarIcon from '@material-ui/icons/Star';
 import { img_300, unavailable } from '../../config/config';
 import useStyles from './style';
 
+import { useGlobalContext } from '../../context';
+
+import { DetailsModal } from '../modal/DetailModal';
 
 
 
@@ -23,14 +26,17 @@ export const CardItem = ({
     poster_path,
     release_date,
     media_type,
+    overview,
     vote_average,
     kind,
 }) => {
     const classes = useStyles();
+    const { handleOpen } = useGlobalContext();
 
     return (
+        // <DetailsModal>
         <Grid item xs={12} sm={6} md={4} lg={3} >
-            <Card className={classes.card} id={id}>
+            <Card className={classes.card} id={id} onClick={() => handleOpen(title, media_type, overview, poster_path)}>
                 {/* {loadingImg ? <Loader /> : } */}
 
                 <CardActionArea >
@@ -69,6 +75,8 @@ export const CardItem = ({
                 </CardActions>
             </Card>
         </Grid>
+        // </DetailsModal>
+
 
     );
 };

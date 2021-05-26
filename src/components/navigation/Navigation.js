@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -20,56 +20,18 @@ const useStyles = makeStyles({
 });
 
 export const Navigation = () => {
-    const { fetchTrending, fetchMovies, fetchSeries, fetchSearch } = useGlobalContext();
+    const { value, handleChange, setHistory } = useGlobalContext();
 
     const classes = useStyles();
-    const [value, setValue] = useState('trending');
-
     const history = useHistory();
-    const currentRef = useRef(null);
-
 
     useEffect(() => {
-        if (value === 'trending') {
-            console.log("=========navigation");
-            history.push('/');
-            fetchTrending();
-        }
-        if (value === 'movies') {
-            history.push('/movies');
-            fetchMovies();
-        }
-        if (value === 'series') {
-            history.push('/series');
-            fetchSeries();
-        }
-        if (value === 'search') {
-            history.push('/search')
-            fetchSearch();
-        };
-        checkPage();
-        // eslint-disable-next-line
-    }, [value, history]);
+        setHistory(history);
+    }, []);
 
-    const checkPage = () => {
-        let navElements = [...currentRef.current.children];
-        navElements.map(element => {
-            let elementName = element.firstElementChild.lastElementChild.textContent.toLowerCase();
-            if (elementName === value) {
-                element.classList.add = 'Mui-selected';
-            } else {
-                element.classList.remove = 'Mui-selected';
-            }
-        });
-
-    }
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     return (
-        <BottomNavigation value={value} onChange={handleChange} className={classes.root} ref={currentRef}>
+        <BottomNavigation value={value} onChange={handleChange} className={classes.root} >
             <BottomNavigationAction label="Trending" value="trending" icon={<WhatshotIcon />} />
             <BottomNavigationAction label="Movies" value="movies" icon={<MovieIcon />} />
             <BottomNavigationAction label="Series" value="series" icon={<TvIcon />} />

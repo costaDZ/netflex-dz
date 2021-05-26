@@ -7,8 +7,8 @@
     scroll-behavior: smooth;
 }
 
-
 .app {
+    min-height: 100vw;
     background-color: #222;
     padding: 4em 0;
     color: #ffffff;

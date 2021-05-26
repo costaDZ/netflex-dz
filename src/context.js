@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState, useReducer } from 'react'
-
 import reducer from './reducer';
 
 
@@ -31,8 +30,11 @@ const AppProvider = ({ children }) => {
     const [type, setType] = useState(0);
     const [search, setSearch] = useState('');
 
+    const [open, setOpen] = useState(false);
+    const [modalContent, setModalContent] = useState({});
 
-    console.log(search);
+    const [history, setHistory] = useState(null);
+    const [value, setValue] = useState('trending');
 
 
     const fetchTrending = async () => {
@@ -63,14 +65,14 @@ const AppProvider = ({ children }) => {
         dispatch({ type: 'ADD_GENERS', payload: genres });
     }
 
-    const fetchSearch = async () => {
+    const fetchSearch = async (e) => {
+        if (e) {
+            e.preventDefault();
+        }
         let url = `https://api.themoviedb.org/3/search/${type ? 'tv' : 'movie'}?api_key=${process.env.REACT_APP_KEY}&language=en-US&query=${search}&page=${state.searchPage}&include_adult=false`;
-
-        // https://api.themoviedb.org/3/search/tv?api_key=<<api_key>>&language=en-US&page=1&query=action&include_adult=false
 
         const response = await fetch(url);
         const data = await response.json();
-
         dispatch({ type: 'SET_MOVIES_SEARCH', payload: data });
     }
 
@@ -95,6 +97,30 @@ const AppProvider = ({ children }) => {
         fetchMovies();
         // eslint-disable-next-line
     }, [state.moviesPage, state.genresIds])
+
+    useEffect(() => {
+        if (history) {
+            if (value === 'trending') {
+                history.push('/');
+                fetchTrending();
+            }
+            if (value === 'movies') {
+                history.push('/movies');
+                fetchMovies();
+            }
+            if (value === 'series') {
+                history.push('/series');
+                fetchSeries();
+            }
+            if (value === 'search') {
+                history.push('/search')
+                fetchSearch();
+            };
+        }
+        // eslint-disable-next-line
+    }, [value]);
+
+
 
     const addGeners = (id) => {
         let generesTarget = state.geners.find(i => i.id === id);
@@ -194,6 +220,25 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const handleOpen = (title, type, overview, image) => {
+        setModalContent({
+            title: title,
+            type: type,
+            overvew: overview,
+            image: image,
+        })
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+
 
     return (
         <AppContent.Provider value={
@@ -210,6 +255,14 @@ const AppProvider = ({ children }) => {
                 search,
                 setSearch,
                 fetchSearch,
+                open,
+                setOpen,
+                handleOpen,
+                handleClose,
+                modalContent,
+                value,
+                handleChange,
+                setHistory
             }
         }>
             { children}

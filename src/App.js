@@ -6,8 +6,10 @@ import { Trending, Movies, Series, Search } from './pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { createMuiTheme, ThemeProvider, Container } from '@material-ui/core';
-import { Loading } from './components';
+import { Loading, DetailsModal } from './components';
 import { useGlobalContext } from './context';
+
+
 
 
 
@@ -48,6 +50,7 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <Header />
+        <DetailsModal />
         <div className='app'>
           <Container maxWidth="xl">
             <Switch>

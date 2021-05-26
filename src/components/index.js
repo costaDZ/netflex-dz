@@ -4,6 +4,8 @@ export { CardItem } from './cart/CardItem';
 export { PaginationPages } from './pagination/PaginationPages';
 export { Loading } from './loading/Loading';
 export { Genres } from './genres/Genres';
+export { DetailsModal } from './modal/DetailModal';
+
 
 
 
