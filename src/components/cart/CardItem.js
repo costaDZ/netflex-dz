@@ -36,7 +36,7 @@ export const CardItem = ({
     return (
         // <DetailsModal>
         <Grid item xs={12} sm={6} md={4} lg={3} >
-            <Card className={classes.card} id={id} onClick={() => handleOpen(title, media_type, overview, poster_path)}>
+            <Card className={classes.card} id={id} onClick={() => handleOpen(title || name, kind, overview, poster_path)}>
                 {/* {loadingImg ? <Loader /> : } */}
 
                 <CardActionArea >

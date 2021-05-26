@@ -88,7 +88,8 @@ export const Search = () => {
                     <TextField
                         value={search}
                         className={classes.input}
-                        required={true}
+                        required={'true' || true}
+                        autoComplete={'true' || true}
                         id="Standard"
                         label="Search"
                         color="primary"
@@ -97,6 +98,7 @@ export const Search = () => {
                     <ButtonGroup variant="text" color="default" aria-label="search" className={classes.groupBtn}>
                         <Button
                             // onClick={fetchSearch}
+                            type='submit'
                             variant="contained"
                             color="primary">
                             <SearchIcon /> Search
@@ -128,7 +130,7 @@ export const Search = () => {
                 <>
                     <Grid container spacing={3} >
                         {
-                            searchMovies?.map(item => <CardItem key={item.id} {...item} kind={"Movie"} />)
+                            searchMovies?.map(item => <CardItem key={item.id} {...item} kind={type === 0 ? "Movies" : "TV -Series"} />)
                         }
                     </Grid>
                     < PaginationPages />

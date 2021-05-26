@@ -19,11 +19,12 @@ export const Header = () => {
     const { handleChange } = useGlobalContext();
 
 
+
     return (
         <AppBar position="fixed" className={classes.appbar} >
             <Toolbar className={classes.toolbar}>
-                <IconButton variant="h6" className={classes.icon} onClick={() => window.scrollTo(0, 0)}>
-                    <Link to='/' onClick={() => handleChange(null, 'trending')}>
+                <IconButton variant="h6" className={classes.icon} onClick={() => handleChange(null, 'trending')}>
+                    <Link to='/'>
                         <ReactLogo />
                     </Link>
                 </IconButton>

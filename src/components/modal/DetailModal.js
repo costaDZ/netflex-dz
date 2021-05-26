@@ -24,10 +24,36 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+        [theme.breakpoints.down('sm')]: {
+            lineHeight: 1,
+            padding: "16px 10px 24px",
+        }
     },
-    // image: {
-    //     'media'
-    // }
+    image: {
+        [theme.breakpoints.down('sm')]: {
+            height: "9em",
+            width: "100%"
+        }
+    },
+    p: {
+        [theme.breakpoints.down('sm')]: {
+            lineHeight: 2,
+            fontSize: ".8em",
+        }
+    },
+    title: {
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "1em",
+            paddingBottom: ".5em",
+            color: theme.palette.primary.main
+        }
+    },
+    subTitle: {
+        [theme.breakpoints.down('sm')]: {
+            display: "none",
+        }
+    },
+
 }));
 
 
@@ -36,7 +62,7 @@ export const DetailsModal = () => {
 
     const { open, handleOpen, handleClose, modalContent } = useGlobalContext();
 
-    const { title, type, overvew, image } = modalContent;
+    const { title, type, name, overvew, image } = modalContent;
 
     return (
         <div>
@@ -57,10 +83,10 @@ export const DetailsModal = () => {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title" color="primary">{title}</h2>
-                        <h3>({type})</h3>
+                        <h2 id="transition-modal-title" color="primary" className={classes.title}>{title || name}</h2>
+                        <h3 className={classes.subTitle}>({type})</h3>
                         <img src={(img_300 + image) || unavailable} alt={title} className={classes.image} />
-                        <p id="transition-modal-description">{overvew}</p>
+                        <p id="transition-modal-description" className={classes.p}>{overvew}</p>
                     </div>
                 </Fade>
             </Modal>

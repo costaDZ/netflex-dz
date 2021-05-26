@@ -20,7 +20,7 @@ export const Trending = () => {
         </Typography>
             <Grid container spacing={3} >
                 {
-                    trending && trending.map(item => <CardItem key={item.id} {...item} />)
+                    trending && trending.map(item => <CardItem key={item.id} {...item} kind={"Movie"} />)
                 }
 
             </Grid>
