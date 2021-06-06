@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,7 +11,6 @@ import StarIcon from '@material-ui/icons/Star';
 
 import { img_300, unavailable } from '../../config/config';
 import useStyles from './style';
-import { CartLoader } from '../loading/CartLoader';
 import { useGlobalContext } from '../../context';
 
 // import { DetailsModal } from '../modal/DetailModal';
@@ -46,15 +45,13 @@ export const CardItem = ({
                         title="Contemplative Reptile"
 
                     />
+
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="h6" className={classes.title}
                             style={(title || name) && (title?.length || name?.length) > 15 ? { fontSize: '.5em' } : { fontSize: '1.5em' }}
                         >
                             {title || name}
                         </Typography>
-                        {/* <Typography variant="body2" color="textSecondary" component="h6">
-                            {overview}
-                        </Typography> */}
                         <Box display="flex" justifyContent="space-between">
                             <Typography variant="body2" component="h6" className={classes.info}>
                                 {kind}
@@ -63,10 +60,7 @@ export const CardItem = ({
                                 {release_date || first_air_date}
                             </Typography>
                         </Box>
-
                     </CardContent>
-
-
 
                 </CardActionArea>
                 <Box className={classes.rating_box}>
@@ -81,9 +75,6 @@ export const CardItem = ({
                 </CardActions>
             </Card>
         </Grid>
-        // </DetailsModal>
-
-
     );
 };
 

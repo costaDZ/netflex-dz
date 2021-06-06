@@ -27,6 +27,7 @@ export const Navigation = () => {
 
     useEffect(() => {
         setHistory(history);
+        // eslint-disable-next-line
     }, []);
 
 

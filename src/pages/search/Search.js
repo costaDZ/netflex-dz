@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, FormControl, makeStyles } from '@material-ui/core';
-import { Grid, Typography, FormHelperText, FormLabel } from '@material-ui/core';
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { CardItem, PaginationPages, CartLoader } from '../../components';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider, Button, ButtonGroup } from '@material-ui/core';
@@ -72,7 +72,6 @@ const useStyles = makeStyles((theme) => {
 
 export const Search = () => {
 
-    // const [page, setPage] = useState(0);
 
     const { type, setType, setSearch, search, fetchSearch, searchMovies, loadingCard } = useGlobalContext();
     const classes = useStyles();
@@ -82,14 +81,13 @@ export const Search = () => {
             <Typography variant="h3" color="primary" className={classes.title}>
                 Search
         </Typography>
-            {/* <Genres /> */}
             <ThemeProvider theme={darkTheme}>
                 <form className={classes.form} onSubmit={(e) => fetchSearch(e)}>
                     <TextField
                         value={search}
                         className={classes.input}
-                        required={'true' || true}
-                        autoComplete={'true' || true}
+                        required
+                        autoComplete
                         id="Standard"
                         label="Search"
                         color="primary"
@@ -97,8 +95,6 @@ export const Search = () => {
                     />
                     <ButtonGroup variant="text" color="default" aria-label="search" className={classes.groupBtn}>
                         <Button
-                            type='submit'
-                            // onClick={fetchSearch}
                             type='submit'
                             variant="contained"
                             color="primary">
@@ -126,10 +122,7 @@ export const Search = () => {
                 {type === 0 ? "Movies" : "Series"}
             </Typography>
 
-            {!searchMovies &&
-                <h2 className={classes.noResult}>No Result Found Yet ...</h2>}
-
-
+            {!searchMovies && <h2 className={classes.noResult}>No Result Found Yet ...</h2>}
 
             {
                 searchMovies &&
@@ -140,18 +133,10 @@ export const Search = () => {
                         {searchMovies.length === 0 && <h2 style={{ margin: "auto", paddingTop: "2em" }}>No result Matches ...</h2>}
                         {searchMovies && searchMovies.map(item => <CardItem key={item.id} {...item} kind={type === 0 ? "Movies" : "TV -Series"} />)}
 
-                        {/* {
-                            searchMovies?.map(item => <CardItem key={item.id} {...item} kind={type === 0 ? "Movies" : "TV -Series"} />)
-                        } */}
-
                     </Grid>
                     < PaginationPages />
                 </>
-
             }
-
-
-
 
         </section>
     );
