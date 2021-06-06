@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Grid, Typography } from '@material-ui/core';
-import { CardItem, PaginationPages, Genres } from '../../components';
+import { CardItem, PaginationPages, Genres, CartLoader } from '../../components';
 
 import { useGlobalContext } from '../../context';
-
-
 
 
 const useStyles = makeStyles((theme) => {
@@ -21,8 +19,10 @@ const useStyles = makeStyles((theme) => {
 
 export const Movies = () => {
 
-    const { movies } = useGlobalContext();
+    const { movies, loadingCard } = useGlobalContext();
     const classes = useStyles();
+
+
 
     return (
         <>
@@ -32,9 +32,13 @@ export const Movies = () => {
             <Genres />
 
             <Grid container spacing={3} >
-                {
-                    movies.map(item => <CardItem key={item.id} {...item} kind={"Movie"} />)
-                }
+
+                {/* {loadingCard ? <CartLoader /> : movies.map(item => <CardItem key={item.id} {...item} kind={"Movie"} />)} */}
+
+                {loadingCard && <CartLoader />}
+                {movies.length === 0 && <h2 style={{ margin: "auto", paddingTop: "2em" }}>No result Matches ...</h2>}
+                {movies && movies.map(item => <CardItem key={item.id} {...item} kind={"Movie"} />)}
+
 
             </Grid>
             <PaginationPages />

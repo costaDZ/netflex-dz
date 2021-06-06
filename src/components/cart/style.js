@@ -4,8 +4,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => {
     return {
         card: {
+            position: "relative",
             margin: 'auto',
-            minHeight: "3em",
+            minHeight: "19em",
             transition: ".3s",
             '&:hover': {
                 background: theme.palette.secondary.main,
@@ -28,18 +29,27 @@ const useStyles = makeStyles((theme) => {
             color: "#fc0",
         },
         rating_box: {
-            position: "relative",
+            position: "absolute",
+            top: "0",
+            right: "0"
         },
         rating: {
             position: "absolute",
             top: "22px",
             right: "31%",
-            fontWeight: "700",
+            fontWeight: "900",
         },
         actions: {
-            justifyContent: "space-between",
-            // height: "5em",
+            position: 'absolute',
+            display: 'block',
+            padding: '8px',
+            bottom: '0',
+            width: '100%',
+            textAlign: 'center',
         },
+        detail_btn: {
+            width: '80%',
+        }
     }
 })
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles, Grid, Box } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,10 +11,10 @@ import StarIcon from '@material-ui/icons/Star';
 
 import { img_300, unavailable } from '../../config/config';
 import useStyles from './style';
-
+import { CartLoader } from '../loading/CartLoader';
 import { useGlobalContext } from '../../context';
 
-import { DetailsModal } from '../modal/DetailModal';
+// import { DetailsModal } from '../modal/DetailModal';
 
 
 
@@ -36,7 +36,7 @@ export const CardItem = ({
     return (
         // <DetailsModal>
         <Grid item xs={12} sm={6} md={4} lg={3} >
-            <Card className={classes.card} id={id} onClick={() => handleOpen(title || name, kind, overview, poster_path)}>
+            <Card className={classes.card} id={id} onClick={() => handleOpen(title || name, kind, overview, poster_path)} >
                 {/* {loadingImg ? <Loader /> : } */}
 
                 <CardActionArea >
@@ -47,7 +47,9 @@ export const CardItem = ({
 
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h6" component="h6" className={classes.title}>
+                        <Typography gutterBottom variant="h6" component="h6" className={classes.title}
+                            style={(title || name) && (title?.length || name?.length) > 15 ? { fontSize: '.5em' } : { fontSize: '1.5em' }}
+                        >
                             {title || name}
                         </Typography>
                         {/* <Typography variant="body2" color="textSecondary" component="h6">
@@ -61,17 +63,21 @@ export const CardItem = ({
                                 {release_date || first_air_date}
                             </Typography>
                         </Box>
-                    </CardContent>
-                </CardActionArea>
 
+                    </CardContent>
+
+
+
+                </CardActionArea>
+                <Box className={classes.rating_box}>
+                    <StarIcon className={classes.rating_star} />
+                    <Box className={classes.rating} > {Number.isInteger(vote_average) ? vote_average + '.0' : vote_average}</Box>
+                </Box>
                 <CardActions display="flex" className={classes.actions}>
-                    <Button variant="contained" size="small" color="primary" >
+                    <Button variant="contained" size="small" color="primary" className={classes.detail_btn}>
                         Details
                     </Button>
-                    <Box className={classes.rating_box}>
-                        <StarIcon className={classes.rating_star} />
-                        <Box className={classes.rating} >{vote_average}</Box>
-                    </Box>
+
                 </CardActions>
             </Card>
         </Grid>

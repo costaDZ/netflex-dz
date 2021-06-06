@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Grid, Typography } from '@material-ui/core';
-import { CardItem, PaginationPages, Genres } from '../../components';
+import { CardItem, PaginationPages, Genres, CartLoader } from '../../components';
 
 import { useGlobalContext } from '../../context';
 
@@ -21,10 +21,8 @@ const useStyles = makeStyles((theme) => {
 
 export const Series = () => {
 
-    const { series } = useGlobalContext();
+    const { series, loadingCard } = useGlobalContext();
     const classes = useStyles();
-
-    console.log(series);
 
     return (
         <>
@@ -34,11 +32,20 @@ export const Series = () => {
             <Genres />
 
             <Grid container spacing={3} >
-                {
-                    series && series.map(item => <CardItem key={item.id} {...item} kind={"TV-series"} />)
+
+                {/* {loadingCard ? <CartLoader /> : series.map(item => <CardItem key={item.id} {...item} kind={"TV-series"} />)} */}
+
+                {loadingCard && <CartLoader />}
+                {series.length === 0 && <h2 style={{ margin: "auto", paddingTop: "2em" }}>No result Matches ...</h2>}
+                {series &&
+
+                    series.map(item => <CardItem key={item.id} {...item} kind={"TV-series"} />)
+
                 }
+
+
             </Grid>
-            <PaginationPages />
+            {  series.length > 0 && <PaginationPages />}
         </>
     );
 };

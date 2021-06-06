@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, FormControl, makeStyles } from '@material-ui/core';
 import { Grid, Typography, FormHelperText, FormLabel } from '@material-ui/core';
-import { CardItem, PaginationPages, Genres } from '../../components';
+import { CardItem, PaginationPages, CartLoader } from '../../components';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider, Button, ButtonGroup } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -74,7 +74,7 @@ export const Search = () => {
 
     // const [page, setPage] = useState(0);
 
-    const { type, setType, setSearch, search, fetchSearch, searchMovies } = useGlobalContext();
+    const { type, setType, setSearch, search, fetchSearch, searchMovies, loadingCard } = useGlobalContext();
     const classes = useStyles();
 
     return (
@@ -126,17 +126,32 @@ export const Search = () => {
                 {type === 0 ? "Movies" : "Series"}
             </Typography>
 
-            {!searchMovies ?
-                <h2 className={classes.noResult}>No Result Found Yet ...</h2> :
+            {!searchMovies &&
+                <h2 className={classes.noResult}>No Result Found Yet ...</h2>}
+
+
+
+            {
+                searchMovies &&
                 <>
                     <Grid container spacing={3} >
-                        {
+
+                        {loadingCard && <CartLoader />}
+                        {searchMovies.length === 0 && <h2 style={{ margin: "auto", paddingTop: "2em" }}>No result Matches ...</h2>}
+                        {searchMovies && searchMovies.map(item => <CardItem key={item.id} {...item} kind={type === 0 ? "Movies" : "TV -Series"} />)}
+
+                        {/* {
                             searchMovies?.map(item => <CardItem key={item.id} {...item} kind={type === 0 ? "Movies" : "TV -Series"} />)
-                        }
+                        } */}
+
                     </Grid>
                     < PaginationPages />
                 </>
+
             }
+
+
+
 
         </section>
     );

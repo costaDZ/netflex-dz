@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useReducer } from 'react'
+import React, { useContext, useEffect, useState, useReducer, useLayoutEffect } from 'react'
 import reducer from './reducer';
 
 
@@ -32,6 +32,9 @@ const AppProvider = ({ children }) => {
 
     const [open, setOpen] = useState(false);
     const [modalContent, setModalContent] = useState({});
+
+    const [loadingCard, setLoadingCard] = useState(true);
+
 
     const [history, setHistory] = useState(null);
     const [value, setValue] = useState('trending');
@@ -76,6 +79,15 @@ const AppProvider = ({ children }) => {
         dispatch({ type: 'SET_MOVIES_SEARCH', payload: data });
     }
 
+    useLayoutEffect(() => {
+        setLoadingCard(true);
+
+        setTimeout(() => {
+            setLoadingCard(false);
+        }, 1000);
+    }, [state.trending, state.movies, state.series, state.searchMovies])
+
+
     useEffect(() => {
         fetchSearch();
         // eslint-disable-next-line
@@ -83,7 +95,6 @@ const AppProvider = ({ children }) => {
 
     useEffect(() => {
         fetchGeners();
-        console.log("=========useEffect");
         fetchTrending();
         // eslint-disable-next-line
     }, [state.trendingPage]);
@@ -99,6 +110,8 @@ const AppProvider = ({ children }) => {
     }, [state.moviesPage, state.genresIds])
 
     useEffect(() => {
+        setLoadingCard(true);
+
         if (history) {
             if (value === 'trending') {
                 history.push('/');
@@ -236,7 +249,9 @@ const AppProvider = ({ children }) => {
     };
 
     const handleChange = (event, newValue) => {
+
         setValue(newValue);
+
     };
 
 
@@ -245,6 +260,7 @@ const AppProvider = ({ children }) => {
         <AppContent.Provider value={
             {
                 ...state,
+                loadingCard,
                 fetchMovies,
                 fetchTrending,
                 changePage,
@@ -263,7 +279,7 @@ const AppProvider = ({ children }) => {
                 modalContent,
                 value,
                 handleChange,
-                setHistory
+                setHistory,
             }
         }>
             { children}

@@ -1,13 +1,7 @@
-//import { useReset } from './hooks/useReset';
-
-
-
 const reducer = (state, action) => {
 
     switch (action.type) {
         case 'ADD_TRENDING':
-            console.log("1 ====> ADD_TRENDING");
-
             return {
                 ...state,
                 trending: action.payload,
