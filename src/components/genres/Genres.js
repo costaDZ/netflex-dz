@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => {
             color: "white",
         },
         avatar: {
-            // BackgroundColor: "red",
             color: "green",
         }
     }

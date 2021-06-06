@@ -1,16 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
 
 import './loader.css';
 
-const useStyles = makeStyles((theme) => {
-    return {
-
-    }
-})
-
 export const Loading = () => {
-    const classes = useStyles();
 
     return (
         <div className="showbox">
