@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Header, Navigation } from './components/index';
-import { Trending, Movies, Series, Search } from './pages'
+import { Overlay, Trending, Movies, Series, Search } from './pages'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -22,20 +22,10 @@ const theme = createMuiTheme({
       main: '#222'
     },
   },
-  // typography: {
-  //   fontFamily: 'Quicksand',
-  //   fontWeightLight: 400,
-  //   fontWeightRegular: 500,
-  //   fontWeightMedium: 600,
-  //   fontWeightBold: 700,
-  // }
+
 })
 
 
-// danger Color #e50914
-// black color #222
-// grey color #303030
-// light #ffffff
 
 const App = () => {
 
@@ -52,9 +42,12 @@ const App = () => {
         <Header />
         <DetailsModal />
         <div className='app'>
-          <Container maxWidth="xl">
-            <Switch>
-              <Route exact path='/' >
+          <Switch>
+            <Route exact path='/'>
+              <Overlay />
+            </Route>
+            <Container maxWidth="xl">
+              <Route path='/trending' >
                 <Trending />
               </Route>
               <Route path='/movies' >
@@ -66,8 +59,8 @@ const App = () => {
               <Route path='/search' >
                 <Search />
               </Route>
-            </Switch>
-          </Container>
+            </Container>
+          </Switch>
         </div>
         <Navigation />
       </ThemeProvider>
@@ -76,3 +69,17 @@ const App = () => {
 }
 
 export default App;
+
+
+  // typography: {
+  //   fontFamily: 'Quicksand',
+  //   fontWeightLight: 400,
+  //   fontWeightRegular: 500,
+  //   fontWeightMedium: 600,
+  //   fontWeightBold: 700,
+  // }
+// danger Color #e50914
+// black color #222
+// grey color #303030
+// light #ffffff
+

@@ -32,7 +32,7 @@ export const Navigation = () => {
 
 
     return (
-        <BottomNavigation value={value} onChange={handleChange} className={classes.root} >
+        <BottomNavigation value={value} onChange={handleChange} className={classes.root} showLabels>
             <BottomNavigationAction label="Trending" value="trending" icon={<WhatshotIcon />} />
             <BottomNavigationAction label="Movies" value="movies" icon={<MovieIcon />} />
             <BottomNavigationAction label="Series" value="series" icon={<TvIcon />} />

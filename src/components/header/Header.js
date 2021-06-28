@@ -23,7 +23,7 @@ export const Header = () => {
     return (
         <AppBar position="fixed" className={classes.appbar} >
             <Toolbar className={classes.toolbar}>
-                <IconButton variant="h6" className={classes.icon} onClick={() => handleChange(null, 'trending')}>
+                <IconButton variant="h6" className={classes.icon} onClick={() => handleChange(null, '/')}>
                     <Link to='/'>
                         <ReactLogo />
                     </Link>

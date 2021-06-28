@@ -28,7 +28,7 @@ export const Series = () => {
         <>
             <Typography variant="h3" color="primary" className={classes.title}>
                 Searies
-        </Typography>
+            </Typography>
             <Genres />
 
             <Grid container spacing={3} >
@@ -36,16 +36,16 @@ export const Series = () => {
                 {/* {loadingCard ? <CartLoader /> : series.map(item => <CardItem key={item.id} {...item} kind={"TV-series"} />)} */}
 
                 {loadingCard && <CartLoader />}
+
                 {series.length === 0 && <h2 style={{ margin: "auto", paddingTop: "2em" }}>No result Matches ...</h2>}
+
                 {series &&
-
                     series.map(item => <CardItem key={item.id} {...item} kind={"TV-series"} />)
-
                 }
 
 
             </Grid>
-            {  series.length > 0 && <PaginationPages />}
+            {series.length > 0 && <PaginationPages />}
         </>
     );
 };

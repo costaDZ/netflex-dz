@@ -29,6 +29,8 @@ const darkTheme = createMuiTheme({
 
 
 const useStyles = makeStyles((theme) => {
+    console.log(theme);
+
     return {
         form: {
             textAlign: "center",
@@ -80,7 +82,7 @@ export const Search = () => {
         <section>
             <Typography variant="h3" color="primary" className={classes.title}>
                 Search
-        </Typography>
+            </Typography>
             <ThemeProvider theme={darkTheme}>
                 <form className={classes.form} onSubmit={(e) => fetchSearch(e)}>
                     <TextField
@@ -99,7 +101,7 @@ export const Search = () => {
                             variant="contained"
                             color="primary">
                             <SearchIcon /> Search
-                    </Button>
+                        </Button>
                     </ButtonGroup>
                 </form>
 

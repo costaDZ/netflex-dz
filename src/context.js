@@ -37,7 +37,7 @@ const AppProvider = ({ children }) => {
 
 
     const [history, setHistory] = useState(null);
-    const [value, setValue] = useState('trending');
+    const [value, setValue] = useState('/');
 
 
     const fetchTrending = async () => {
@@ -114,7 +114,7 @@ const AppProvider = ({ children }) => {
 
         if (history) {
             if (value === 'trending') {
-                history.push('/');
+                history.push('/trending');
                 fetchTrending();
             }
             if (value === 'movies') {
@@ -192,8 +192,10 @@ const AppProvider = ({ children }) => {
 
         let itemNumber = Number(e.target.textContent);
 
+        console.log(itemNumber);
+
         if (itemNumber) {
-            if (currentLocation === "/") {
+            if (currentLocation === "trending") {
                 changeCurrentPage(itemNumber, "trending");
             } else if (currentLocation === "/movies") {
                 changeCurrentPage(itemNumber, "movies");
@@ -282,7 +284,7 @@ const AppProvider = ({ children }) => {
                 setHistory,
             }
         }>
-            { children}
+            {children}
         </AppContent.Provider >
     )
 }
