@@ -47,6 +47,9 @@ export const useStyles = makeStyles((theme) => {
             [theme.breakpoints.down('md')]: {
                 fontSize: ".8em"
             }
+        },
+        overlay_btn: {
+            textDecoration: "none",
         }
     }
 })

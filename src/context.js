@@ -282,6 +282,7 @@ const AppProvider = ({ children }) => {
                 value,
                 handleChange,
                 setHistory,
+                setValue,
             }
         }>
             {children}

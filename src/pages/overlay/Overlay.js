@@ -1,12 +1,16 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 import { useStyles } from './styles';
-
+import { useGlobalContext } from '../../context';
 
 export const Overlay = () => {
 
     const classes = useStyles();
+
+    const { setValue } = useGlobalContext();
+
 
     return (
         <section className={classes.overlay}>
@@ -19,7 +23,12 @@ export const Overlay = () => {
                         Open you show right now with the latest
                         movies, series, documentries and more ...
                     </p>
-                    <Button variant="contained" color="primary">Discover</Button>
+                    <Link to="/trending" className={classes.overlay_btn}
+                        onClick={() => {
+                            setValue("trending")
+                        }}>
+                        <Button variant="contained" color="primary">Discover</Button>
+                    </Link>
                 </div>
             </Container>
         </section >
