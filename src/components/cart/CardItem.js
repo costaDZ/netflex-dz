@@ -48,7 +48,7 @@ export const CardItem = ({
 
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="h6" className={classes.title}
-                            style={(title || name) && (title?.length || name?.length) > 15 ? { fontSize: '.5em' } : { fontSize: '1.5em' }}
+                            style={(title || name) && (title?.length || name?.length) > 15 ? { fontSize: '1.2em' } : { fontSize: '1.5em' }}
                         >
                             {title || name}
                         </Typography>

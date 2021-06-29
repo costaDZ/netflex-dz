@@ -22,7 +22,6 @@ const theme = createMuiTheme({
       main: '#222'
     },
   },
-
 })
 
 
@@ -34,7 +33,6 @@ const App = () => {
   if (loading) {
     return <Loading />
   }
-
 
   return (
     <Router>

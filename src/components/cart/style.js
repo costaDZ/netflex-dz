@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => {
             fontWeight: "900",
         },
         actions: {
-            position: 'absolute',
+            position: 'relative',
             display: 'block',
             padding: '8px',
             bottom: '0',

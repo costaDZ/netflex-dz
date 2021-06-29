@@ -150,6 +150,10 @@ const AppProvider = ({ children }) => {
     }
 
     const changeCurrentPage = (num, section) => {
+
+        console.log(num, section);
+
+
         if (section === 'trending') {
             dispatch({ type: 'CHANGE_TRENDING_PAGE', payload: num })
         } else if (section === 'movies') {
@@ -192,10 +196,9 @@ const AppProvider = ({ children }) => {
 
         let itemNumber = Number(e.target.textContent);
 
-        console.log(itemNumber);
 
         if (itemNumber) {
-            if (currentLocation === "trending") {
+            if (currentLocation === "/trending") {
                 changeCurrentPage(itemNumber, "trending");
             } else if (currentLocation === "/movies") {
                 changeCurrentPage(itemNumber, "movies");
@@ -212,7 +215,7 @@ const AppProvider = ({ children }) => {
             let ariaLabel = e.target.parentElement.ariaLabel;
 
             if (ariaLabel === "Go to previous page" || (e.target.parentElement.tagName === "svg")) {
-                if (currentLocation === "/") {
+                if (currentLocation === "/trending") {
                     prevPage("trending");
                 } else if (currentLocation === "/movies") {
                     prevPage("movies");
@@ -223,7 +226,7 @@ const AppProvider = ({ children }) => {
                 }
 
             } else if (ariaLabel === "Go to next page" || ariaLabel === null) {
-                if (currentLocation === "/") {
+                if (currentLocation === "/trending") {
                     nextPage("trending");
                 } else if (currentLocation === "/movies" || ariaLabel === null) {
                     nextPage("movies");
