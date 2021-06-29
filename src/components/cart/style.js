@@ -29,14 +29,16 @@ const useStyles = makeStyles((theme) => {
             color: "#fc0",
         },
         rating_box: {
-            position: "absolute",
-            top: "0",
-            right: "0"
+            top: '0',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            right: '0',
+            position: 'absolute',
+            height: '81px',
         },
         rating: {
             position: "absolute",
-            bottom: "28px",
-            left: "21px",
             fontWeight: "900",
         },
         actions: {
