@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => {
     return {
         title: {
             textAlign: "center",
-            margin: ".5em 0",
+            margin: "1em 0",
             fontSize: "2em",
         }
     }

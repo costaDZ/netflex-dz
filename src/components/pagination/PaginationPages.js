@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => {
 export const PaginationPages = () => {
 
     const { changePage, numberPages } = useGlobalContext();
+
     let location = useLocation();
     let currentLocation = location.pathname;
 

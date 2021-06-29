@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => {
         },
         title: {
             textAlign: "center",
-            margin: ".5em 0",
+            margin: "1em 0",
             fontSize: "2em",
         },
         groupBtn: {

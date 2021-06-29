@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => {
             right: "0"
         },
         rating: {
-            position: "relative",
-            bottom: "55px",
+            position: "absolute",
+            bottom: "28px",
             left: "21px",
             fontWeight: "900",
         },
