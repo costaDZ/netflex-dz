@@ -254,9 +254,7 @@ const AppProvider = ({ children }) => {
     };
 
     const handleChange = (event, newValue) => {
-
         setValue(newValue);
-
     };
 
 
